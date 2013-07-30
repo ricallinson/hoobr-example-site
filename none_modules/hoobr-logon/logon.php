@@ -1,8 +1,6 @@
 <?php
-require("../hoobr-app/index.php");
+namesapce php_require\hoobr\logon;
 
-/*
-    @route GET /logon
-*/
-
-$res->send("Logon form.");
+$module->exports["render"] = function () {
+    return "Logon form.";
+};
