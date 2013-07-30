@@ -22,8 +22,7 @@ $req = $res->request; // done for convenience.
 $require("../hoobr-users/middleware/auth");
 
 /*
-    Set the renderer's to be used for each template type.
+    Set the renderer to be used by default.
 */
 
-$res->renderer[".mu.html"] = $require("php-render-mu");
 $res->renderer[".php.html"] = $require("php-render-php");

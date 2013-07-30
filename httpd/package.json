@@ -14,7 +14,6 @@
         "php-http": "git://github.com/ricallinson/php-http.git#master",
         "php-rewrite": "git://github.com/ricallinson/php-rewrite.git#master",
         "php-render-php": "git://github.com/ricallinson/php-render-php.git#master",
-        "php-render-mu": "git://github.com/ricallinson/php-render-mu.git#master",
         "php-composite": "git://github.com/ricallinson/php-composite.git#master"
     },
     "devDependencies" : {
