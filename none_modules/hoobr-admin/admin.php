@@ -9,4 +9,7 @@ if ($req->cfg("loggedin") != true) {
     $res->redirect("/hoobr/logon");
 }
 
-$res->send("Admin page.");
+$res->render("./views/layout.php.html", array(
+    "title" => "Admin page.",
+    "start" => microtime(true)
+));

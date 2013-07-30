@@ -20,3 +20,10 @@ $req = $res->request; // done for convenience.
 */
 
 $require("../hoobr-logon/middleware/auth");
+
+/*
+    Set the renderer's to be used for each template type.
+*/
+
+$res->renderer[".mu.html"] = $require("php-render-mu");
+$res->renderer[".php.html"] = $require("php-render-php");

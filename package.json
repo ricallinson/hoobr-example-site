@@ -12,7 +12,9 @@
     "dependencies" : {
         "php-require": "*",
         "php-http": "git://github.com/ricallinson/php-http.git#master",
-        "php-rewrite": "git://github.com/ricallinson/php-rewrite.git#master"
+        "php-rewrite": "git://github.com/ricallinson/php-rewrite.git#master",
+        "php-render-php": "git://github.com/ricallinson/php-render-php.git#master",
+        "php-render-mu": "git://github.com/ricallinson/php-render-mu.git#master"
     },
     "devDependencies" : {
         "php-tester": "git://github.com/ricallinson/php-tester.git#master"
