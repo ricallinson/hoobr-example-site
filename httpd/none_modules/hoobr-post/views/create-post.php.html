@@ -1,21 +1,30 @@
-<div>
-    <div>
-    <?php if ($saved) echo $saved;?>
-    </div>
-    <div>
-        <a href="?hoobr-post-action=new">New</a>
-        <a href="?post-id=<?php echo $postId;?>&hoobr-post-action=delete">Delete</a>
-    </div>
-    <form method="post">
-        <input type="hidden" name="post-id" value="<?php echo $postId;?>"></input>
-        <div>
-            <input type="string" name="title" value="<?php echo $title;?>" size="60"></input>
-        </div>
-        <div>
-            <textarea name="text" rows="10" cols="50"><?php echo $text;?></textarea>
-        </div>
-        <div>
-            <input type="submit" name="hoobr-post-action" value="Save"></input>
-        </div>
-    </form>
+<div class="panel">
+	<div class="panel-heading">
+		<h3 class="panel-title">Posts</h3>
+	</div>
+	<?php if ($saved) {?>
+	<div class="alert">Page saved.</div>
+	<?php }?>
+	<div class="navbar">
+		<ul class="nav navbar-nav">
+			<li><a href="?hoobr-post-action=new">Create New Page</a></li>
+			<li><a href="?post-id=<?php echo $postId;?>&hoobr-post-action=delete">Delete Current Page</a></li>
+		</ul>
+	</div>
+	<form method="post">
+		<fieldset>
+			<input type="hidden" name="post-id" value="<?php echo $postId;?>"></input>
+			<div class="form-group">
+				<label for="">Title</label>
+				<input class="form-control" type="text" name="title" value="<?php echo $title;?>" size="60"></input>
+			</div>
+			<div class="form-group">
+				<label for="">Text</label>
+				<textarea class="form-control" name="text" rows="10"><?php echo $text;?></textarea>
+			</div>
+			<div class="form-group">
+				<input class="btn btn-default pull-right" type="submit" name="hoobr-post-action" value="Save"></input>
+			</div>
+		</fieldset>
+	</form>
 </div>

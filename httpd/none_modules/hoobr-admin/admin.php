@@ -63,20 +63,21 @@ if ($req->cfg("loggedin") !== true) {
 $res->render("./views/layout.php.html", $composite(
     array(
         "header" => array(
-            "module" => "../hoobr-users",
-            "action" => "loggedin"
+            "module" => "../hoobr-post",
+            "action" => "listPosts"
         ),
         "main" => array(
             "module" => "../hoobr-post",
             "action" => "createPost"
         ),
         "footer" => array(
-            "module" => "../hoobr-post",
-            "action" => "listPosts"
+            "module" => "../hoobr-users",
+            "action" => "loggedin"
         )
     ),
     array(
-        "title" => "Admin",
+        "title" => "Hoobr Admin",
+        "footer" => "",
         "start" => microtime(true)
     )
 ));

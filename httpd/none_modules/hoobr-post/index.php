@@ -26,10 +26,17 @@ function getPostsList($store, $from=0, $to=null) {
 
 $exports["listPosts"] = function () use ($req, $render, $store) {
 
+    $postId = $req->param("post-id");
     $posts = getPostsList($store);
 
+    if (!$postId) {
+        reset($posts);
+        $postId = key($posts);
+    }
+
     return $render(__DIR__ . "/views/list-posts.php.html", array(
-        "posts" => $posts
+        "posts" => $posts,
+        "current" => $postId
     ));
 };
 
@@ -67,6 +74,7 @@ $exports["createPost"] = function () use ($req, $res, $render, $store) {
 
     if ($action === "delete" && $postId) {
         $store->delete($postId);
+        $res->redirect("/hoobr/httpd/admin");
     } else if ($action === "save" && $postId) {
 
         if (!$title) {

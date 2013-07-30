@@ -1,11 +1,26 @@
-<html>
-    <head>
-        <title><?php echo $title;?></title>
-    </head>
-    <body>
-        <h1><?php echo $title;?></h1>
-        <div><?php echo $header;?></div>
-        <div><?php echo $main;?></div>
-        <div><?php echo $footer;?></div>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title><?php echo $title;?></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="/hoobr/httpd/none_modules/bootstrap-style/assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/hoobr/httpd/none_modules/hoobr-public/assets/css/main.css">
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<a class="navbar-brand" herf="/"><?php echo $title;?></a>
+				<div class="nav-collapse collapse bs-navbar-collapse">
+					<?php echo $header;?>
+					<p class="navbar-text pull-right">
+						<a href="/hoobr/httpd/admin" class="navbar-link">Site Admin</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="jumbotron"><?php echo $main;?></div>
+			<div><?php echo $footer;?></div>
+		</div>
+	</body>
 </html>

@@ -41,7 +41,7 @@ if ($req->param("username") && $req->param("password")) {
     If the user is logging out we do it here.
 */
 
-if ($req->param("logout")) {
+if ($req->cfg("loggedin") && $req->param("logout")) {
     $req->cfg("loggedin", false);
     $res->clearCookie("security");
     $res->clearCookie("username");
