@@ -19,7 +19,7 @@ $req = $res->request; // done for convenience.
     Trigger middleware.
 */
 
-$require("../hoobr-logon/middleware/auth");
+$require("../hoobr-users/middleware/auth");
 
 /*
     Set the renderer's to be used for each template type.

@@ -1,0 +1,14 @@
+RewriteEngine On
+#RewriteBase /
+
+RewriteCond %{REQUEST_METHOD} GET
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^admin$ /Users/allinson/Php/hoobr/httpd/none_modules/hoobr-admin/admin.php [L,QSA]
+
+RewriteCond %{REQUEST_METHOD} POST
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^admin$ /Users/allinson/Php/hoobr/httpd/none_modules/hoobr-admin/admin.php [L,QSA]
+
+RewriteCond %{REQUEST_METHOD} GET
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^$ /Users/allinson/Php/hoobr/httpd/none_modules/hoobr-public/public.php [L,QSA]
