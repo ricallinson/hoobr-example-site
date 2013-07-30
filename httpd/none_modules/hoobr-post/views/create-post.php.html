@@ -2,6 +2,10 @@
     <div>
     <?php if ($saved) echo $saved;?>
     </div>
+    <div>
+        <a href="?hoobr-post-action=new">New</a>
+        <a href="?post-id=<?php echo $postId;?>&hoobr-post-action=delete">Delete</a>
+    </div>
     <form method="post">
         <input type="hidden" name="post-id" value="<?php echo $postId;?>"></input>
         <div>
@@ -11,7 +15,7 @@
             <textarea name="text" rows="10" cols="50"><?php echo $text;?></textarea>
         </div>
         <div>
-            <input type="submit" name="to-save" value="Save"></input>
+            <input type="submit" name="hoobr-post-action" value="Save"></input>
         </div>
     </form>
 </div>

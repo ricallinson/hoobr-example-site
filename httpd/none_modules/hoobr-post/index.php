@@ -3,33 +3,82 @@ namespace php_require\hoobr_post;
 
 $keyval = $require("php-keyval");
 $render = $require("php-render-php");
-$req = $require("php-http")->request;
+$res = $require("php-http");
+$req = $res->request;
 
-$store = $keyval(__DIR__ . "/posts/");
+$store = $keyval(__DIR__ . "/posts/", 10);
 
-$exports["listPosts"] = function () use($render, $req, $store) {
+function getPostsList($store, $from=0, $to=null) {
 
-    $postIds = $store->getKeys();
+    $posts = array();
+    $postIds = $store->getKeys($from, $to);
+
+    foreach ($postIds as $postId) {
+        $posts[$postId] = $store->get($postId)["title"];
+    }
+
+    return $posts;
+}
+
+/*
+    List all posts as links.
+*/
+
+$exports["listPosts"] = function () use ($req, $render, $store) {
+
+    $posts = getPostsList($store);
 
     return $render(__DIR__ . "/views/list-posts.php.html", array(
-        "postIds" => $postIds
+        "posts" => $posts
     ));
 };
 
-$exports["createPost"] = function () use($render, $req, $store) {
+/*
+    Show a post.
+*/
 
-    $toSave = $req->param("to-save");
+$exports["showPost"] = function () use ($req, $render, $store) {
+
+    $postId = $req->param("post-id");
+
+    if (!$postId) {
+        // if there is no postId get the first one returned by store?
+        $postId = $store->getKeys(0, 1)[0];
+    }
+
+    $post = $store->get($postId);
+
+    return $render(__DIR__ . "/views/show-post.php.html", array(
+        "post" => $post
+    ));
+};
+
+/*
+    CRUD Create, Read, Update, Delete
+*/
+
+$exports["createPost"] = function () use ($req, $res, $render, $store) {
+
+    $action = strtolower($req->param("hoobr-post-action"));
     $saved = false;
     $postId = $req->param("post-id");
     $title = $req->param("title");
     $text = $req->param("text");
 
-    if ($toSave && $postId) {
+    if ($action === "delete" && $postId) {
+        $store->delete($postId);
+    } else if ($action === "save" && $postId) {
+
+        if (!$title) {
+            $title = "New Post";
+        }
+
         // save the post
         $saved = $store->put($postId, array("title" => $title, "text" => $text));
     }
 
     if ($postId === null) {
+        // starting a new post
         $postId = $store->genUuid();
     } else {
         // load the post

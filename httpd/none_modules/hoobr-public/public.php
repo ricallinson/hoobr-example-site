@@ -5,10 +5,26 @@ require("../hoobr-app/index.php");
     @route GET /
 */
 
-$res->render("./views/layout.php.html", array(
-    "title" => "Public page.",
-    "header" => "",
-    "main" => "Content.",
-    "footer" => "",
-    "start" => microtime(true)
+$composite = $require("php-composite");
+
+/*
+    Renders the main page.
+*/
+
+$res->render("./views/layout.php.html", $composite(
+    array(
+        "header" => array(
+            "module" => "../hoobr-post",
+            "action" => "listPosts"
+        ),
+        "main" => array(
+            "module" => "../hoobr-post",
+            "action" => "showPost"
+        )
+    ),
+    array(
+        "title" => "Hoobr Site",
+        "footer" => "",
+        "start" => microtime(true)
+    )
 ));

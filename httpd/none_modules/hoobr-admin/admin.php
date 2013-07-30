@@ -48,7 +48,7 @@ $res->render("./views/layout.php.html", $composite(
         )
     ),
     array(
-        "title" => "Admin Logon",
+        "title" => "Admin",
         "start" => microtime(true)
     )
 ));

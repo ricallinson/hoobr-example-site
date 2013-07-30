@@ -1,5 +1,9 @@
 <div>
-    <?php foreach ($postIds as $postId) {?>
-    <a href="?post-id=<?php echo $postId;?>"><?php echo $postId;?></a>
-    <?php }?>
+    <ul>
+        <?php foreach ($posts as $postId => $title) {?>
+        <li>
+            <a href="?post-id=<?php echo $postId;?>"><?php echo $title;?></a>
+        </li>
+        <?php }?>
+    </ul>
 </div>
