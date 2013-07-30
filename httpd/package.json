@@ -14,7 +14,8 @@
         "php-http": "git://github.com/ricallinson/php-http.git#master",
         "php-rewrite": "git://github.com/ricallinson/php-rewrite.git#master",
         "php-render-php": "git://github.com/ricallinson/php-render-php.git#master",
-        "php-composite": "git://github.com/ricallinson/php-composite.git#master"
+        "php-composite": "git://github.com/ricallinson/php-composite.git#master",
+        "php-keyval": "git://github.com/ricallinson/php-keyval.git#master"
     },
     "devDependencies" : {
         "php-tester": "git://github.com/ricallinson/php-tester.git#master"

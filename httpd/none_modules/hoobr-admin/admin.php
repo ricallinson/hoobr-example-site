@@ -20,6 +20,8 @@ if ($req->cfg("loggedin") !== true) {
             )
         ),
         array(
+            "header" => "",
+            "footer" => "",
             "title" => "Admin Logon",
             "start" => microtime(true)
         )
@@ -32,9 +34,17 @@ if ($req->cfg("loggedin") !== true) {
 
 $res->render("./views/layout.php.html", $composite(
     array(
-        "main" => array(
+        "header" => array(
             "module" => "../hoobr-users",
             "action" => "loggedin"
+        ),
+        "main" => array(
+            "module" => "../hoobr-post",
+            "action" => "createPost"
+        ),
+        "footer" => array(
+            "module" => "../hoobr-post",
+            "action" => "listPosts"
         )
     ),
     array(
