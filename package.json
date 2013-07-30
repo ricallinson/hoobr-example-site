@@ -1,0 +1,29 @@
+{
+    "name": "hoobr",
+    "description": "Just for fun.",
+    "version": "0.0.1",
+    "author": {
+        "name": "Ric Allinson",
+        "email": "npm@ricallinson.com"
+    },
+    "engines": {
+        "php": ">= 5.4.0"
+    },
+    "dependencies" : {
+        "php-require": "*",
+        "php-http": "git://github.com/ricallinson/php-http.git#master",
+        "php-rewrite": "git://github.com/ricallinson/php-rewrite.git#master"
+    },
+    "devDependencies" : {
+        "php-tester": "git://github.com/ricallinson/php-tester.git#master"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:ricallinson/hoobr.git"
+    },
+    "scripts": {
+        "test": "./test/run",
+        "rewrite": "php ./node_modules/.bin/rewrite"
+    },
+    "license": "MIT"
+}

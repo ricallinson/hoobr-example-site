@@ -1,4 +1,3 @@
-hoobr
-=====
+# hoobr
 
-Stuff for fun
+Just for fun.
