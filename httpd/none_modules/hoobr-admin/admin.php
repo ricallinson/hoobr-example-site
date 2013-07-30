@@ -42,13 +42,14 @@ $composite = $require("php-composite");
 if ($req->cfg("loggedin") !== true) {
     $res->render("./views/layout.php.html", $composite(
         array(
-            "main" => array(
+            "sidebar" => array(
                 "module" => "../hoobr-users",
-                "action" => "logon"
+                "action" => "sidebar"
             )
         ),
         array(
             "header" => "",
+            "main" => "",
             "footer" => "",
             "title" => "Admin Logon",
             "start" => microtime(true)
@@ -70,9 +71,9 @@ $res->render("./views/layout.php.html", $composite(
             "module" => "../hoobr-post",
             "action" => "createPost"
         ),
-        "footer" => array(
+        "sidebar" => array(
             "module" => "../hoobr-users",
-            "action" => "loggedin"
+            "action" => "sidebar"
         )
     ),
     array(
