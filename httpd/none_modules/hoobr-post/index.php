@@ -81,7 +81,7 @@ $exports["createPost"] = function () use ($req, $res, $render, $store, $pathlib)
 
         $res->redirect($req->cfg("webroot") . "/admin");
 
-    } else if ($action === "save" && $postId) {
+    } else if ($action === "save page" && $postId) {
 
         if (!$title) {
             $title = "New Post";
