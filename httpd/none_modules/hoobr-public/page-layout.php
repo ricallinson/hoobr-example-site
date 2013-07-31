@@ -20,8 +20,8 @@ $assests = $require("../hoobr-assets");
     Grab the $request, $response objects.
 */
 
-$res = $require("php-http");
-$req = $res->request; // done for convenience.
+$req = $require("php-http/request");
+$res = $require("php-http/response");
 
 /*
     Set webroot and approot.
@@ -49,50 +49,24 @@ $require("../hoobr-users/middleware/auth");
 $assests["addBundle"]($require("./config"));
 
 /*
-    @route GET|POST /admin
-    If the user is not logged in show only the login form.
-*/
-
-if ($req->cfg("loggedin") !== true) {
-    $res->render($pathlib->join(__DIR__, "views", "layout.php.html"), $composite(
-        array(
-            "sidebar" => array(
-                "module" => "../hoobr-users",
-                "action" => "sidebar"
-            )
-        ),
-        array(
-            "header" => "",
-            "main" => "",
-            "footer" => "",
-            "title" => "Admin Logon",
-            "start" => microtime(true)
-        )
-    ));
-}
-
-/*
-    Once the user is logged in show the admin site.
+    @route GET /
+    Renders the main page.
 */
 
 $res->render($pathlib->join(__DIR__, "views", "layout.php.html"), $composite(
     array(
         "header" => array(
-            "module" => "../hoobr-post",
+            "module" => "../hoobr-posts",
             "action" => "listPosts"
         ),
         "main" => array(
-            "module" => "../hoobr-post",
-            "action" => "createPost"
+            "module" => "../hoobr-posts",
+            "action" => "showPost"
         ),
-        "sidebar" => array(
-            "module" => "../hoobr-users",
-            "action" => "sidebar"
-        )
-    ),
-    array(
-        "title" => "Hoobr Admin",
+        "title" => "Hoobr Site",
         "footer" => "",
+        "assetsTop" => $assests["render"]("top"),
+        "assetsBottom" => $assests["render"]("bottom"),
         "start" => microtime(true)
     )
 ));

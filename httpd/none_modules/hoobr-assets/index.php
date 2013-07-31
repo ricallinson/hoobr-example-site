@@ -6,8 +6,8 @@ namespace php_require\hoobr_assets;
 */
 
 $pathlib = $require("php-path");
-$req = $require("php-http/lib/request");
-$res = $require("php-http/lib/response");
+$req = $require("php-http/request");
+$res = $require("php-http/response");
 
 /*
     Holds all the css URL's.

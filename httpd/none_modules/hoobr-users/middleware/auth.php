@@ -5,8 +5,8 @@ namespace php_require\hoobr_logon\middleware\auth;
     Grab the $request, $response objects.
 */
 
-$res = $require("php-http");
-$req = $res->request; // done for convenience.
+$req = $require("php-http/request");
+$res = $require("php-http/response");
 
 /*
     Check the users cookie to see if they are logged in.

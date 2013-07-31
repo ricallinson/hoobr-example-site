@@ -3,7 +3,7 @@ namespace php_require\hoobr_users;
 
 $pathlib = $require("php-path");
 $render = $require("php-render-php");
-$req = $require("php-http")->request;
+$req = $require("php-http/request");
 
 /*
     Show the logon form.

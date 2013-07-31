@@ -4,8 +4,8 @@ namespace php_require\hoobr_post;
 $pathlib = $require("php-path");
 $keyval = $require("php-keyval");
 $render = $require("php-render-php");
-$res = $require("php-http");
-$req = $res->request;
+$req = $require("php-http/request");
+$res = $require("php-http/response");
 
 $store = $keyval($pathlib->join($req->cfg("approot"), "data", "posts"), 10);
 
@@ -75,7 +75,7 @@ $exports["showPost"] = function () use ($req, $render, $store, $pathlib) {
     CRUD Create, Read, Update, Delete
 */
 
-$exports["createPost"] = function () use ($req, $res, $render, $store, $pathlib) {
+$exports["main"] = function () use ($req, $res, $render, $store, $pathlib) {
 
     $action = strtolower($req->param("hoobr-post-action"));
     $saved = false;
