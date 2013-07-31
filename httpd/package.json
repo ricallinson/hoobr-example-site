@@ -10,13 +10,12 @@
         "php": ">= 5.4.0"
     },
     "dependencies" : {
-        "php-require": "*",
+        "php-require": "git://github.com/ricallinson/php-require.git#master",
         "php-http": "git://github.com/ricallinson/php-http.git#master",
         "php-rewrite": "git://github.com/ricallinson/php-rewrite.git#master",
         "php-render-php": "git://github.com/ricallinson/php-render-php.git#master",
         "php-composite": "git://github.com/ricallinson/php-composite.git#master",
-        "php-keyval": "git://github.com/ricallinson/php-keyval.git#master",
-        "php-path": "git://github.com/ricallinson/php-path.git#master"
+        "php-keyval": "git://github.com/ricallinson/php-keyval.git#master"
     },
     "devDependencies" : {
         "php-tester": "git://github.com/ricallinson/php-tester.git#master"

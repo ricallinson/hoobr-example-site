@@ -9,6 +9,14 @@ $req = $res->request;
 
 $store = $keyval($pathlib->join($req->cfg("approot"), "data", "posts"), 10);
 
+function getFirstPostId($store) {
+    $keys = $store->getKeys(0, 1);
+    if (count($keys) <= 0) {
+        return null;
+    }
+    return $keys[0];
+}
+
 function getPostsList($store, $from=0, $to=null) {
 
     $posts = array();
@@ -51,7 +59,7 @@ $exports["showPost"] = function () use ($req, $render, $store, $pathlib) {
 
     if (!$postId) {
         // if there is no postId get the first one returned by store?
-        $postId = $store->getKeys(0, 1)[0];
+        $postId = getFirstPostId($store);
     }
 
     $post = $store->get($postId);
@@ -99,11 +107,7 @@ $exports["createPost"] = function () use ($req, $res, $render, $store, $pathlib)
 
     } else {
 
-        $keys = $store->getKeys(0, 1);
-
-        if (count($keys) > 0) {
-            $postId = $keys[0];
-        }
+        $postId = getFirstPostId($store);
 
     }
 
