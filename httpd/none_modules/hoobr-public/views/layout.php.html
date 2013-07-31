@@ -3,8 +3,7 @@
 	<head>
 		<title><?php echo $title;?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="/hoobr/httpd/none_modules/bootstrap-style/assets/css/bootstrap.min.css">
-		<link rel="stylesheet" href="/hoobr/httpd/none_modules/hoobr-public/assets/css/main.css">
+		<?php echo $assetsTop;?>
 	</head>
 	<body>
 		<div class="navbar navbar-inverse navbar-fixed-top">
@@ -24,5 +23,6 @@
 		<div class="container">
             <?php echo $footer;?>
         </div>
+        <?php echo $assetsBottom;?>
 	</body>
 </html>

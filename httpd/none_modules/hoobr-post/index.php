@@ -1,12 +1,13 @@
 <?php
 namespace php_require\hoobr_post;
 
+$pathlib = $require("php-path");
 $keyval = $require("php-keyval");
 $render = $require("php-render-php");
 $res = $require("php-http");
 $req = $res->request;
 
-$store = $keyval(__DIR__ . "/posts/", 10);
+$store = $keyval($pathlib->join(__DIR__, "posts"), 10);
 
 function getPostsList($store, $from=0, $to=null) {
 
@@ -24,7 +25,7 @@ function getPostsList($store, $from=0, $to=null) {
     List all posts as links.
 */
 
-$exports["listPosts"] = function () use ($req, $render, $store) {
+$exports["listPosts"] = function () use ($req, $render, $store, $pathlib) {
 
     $postId = $req->param("post-id");
     $posts = getPostsList($store);
@@ -34,7 +35,7 @@ $exports["listPosts"] = function () use ($req, $render, $store) {
         $postId = key($posts);
     }
 
-    return $render(__DIR__ . "/views/list-posts.php.html", array(
+    return $render($pathlib->join(__DIR__, "views", "list-posts.php.html"), array(
         "posts" => $posts,
         "current" => $postId
     ));
@@ -44,7 +45,7 @@ $exports["listPosts"] = function () use ($req, $render, $store) {
     Show a post.
 */
 
-$exports["showPost"] = function () use ($req, $render, $store) {
+$exports["showPost"] = function () use ($req, $render, $store, $pathlib) {
 
     $postId = $req->param("post-id");
 
@@ -55,16 +56,18 @@ $exports["showPost"] = function () use ($req, $render, $store) {
 
     $post = $store->get($postId);
 
-    return $render(__DIR__ . "/views/show-post.php.html", array(
+    return $render($pathlib->join(__DIR__, "views", "show-post.php.html"), array(
         "post" => $post
     ));
 };
 
 /*
+    This is not good. Needs work.
+
     CRUD Create, Read, Update, Delete
 */
 
-$exports["createPost"] = function () use ($req, $res, $render, $store) {
+$exports["createPost"] = function () use ($req, $res, $render, $store, $pathlib) {
 
     $action = strtolower($req->param("hoobr-post-action"));
     $saved = false;
@@ -73,8 +76,11 @@ $exports["createPost"] = function () use ($req, $res, $render, $store) {
     $text = $req->param("text");
 
     if ($action === "delete" && $postId) {
+
         $store->delete($postId);
+
         $res->redirect("/hoobr/httpd/admin");
+
     } else if ($action === "save" && $postId) {
 
         if (!$title) {
@@ -83,19 +89,26 @@ $exports["createPost"] = function () use ($req, $res, $render, $store) {
 
         // save the post
         $saved = $store->put($postId, array("title" => $title, "text" => $text));
-    }
 
-    if ($postId === null) {
+        $res->redirect("/hoobr/httpd/admin?post-id=" . $postId);
+
+    } else if ($action === "new") {
+
         // starting a new post
         $postId = $store->genUuid();
+
     } else {
-        // load the post
-        $post = $store->get($postId);
-        $title = $post["title"];
-        $text = $post["text"];
+
+        $postId = $store->getKeys(0, 1)[0];
+
     }
 
-    return $render(__DIR__ . "/views/create-post.php.html", array(
+    // load the post
+    $post = $store->get($postId);
+    $title = $post["title"];
+    $text = $post["text"];
+
+    return $render($pathlib->join(__DIR__, "views", "create-post.php.html"), array(
         "postId" => $postId,
         "title" => $title,
         "text" => $text,

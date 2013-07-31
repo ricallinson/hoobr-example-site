@@ -9,6 +9,14 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'on');
 
 /*
+    Require modules.
+*/
+
+$pathlib = $require("php-path");
+$composite = $require("php-composite");
+$assests = $require("../hoobr-assets");
+
+/*
     Grab the $request, $response objects.
 */
 
@@ -16,10 +24,11 @@ $res = $require("php-http");
 $req = $res->request; // done for convenience.
 
 /*
-    Trigger middleware.
+    Set webroot and approot.
 */
 
-$require("../hoobr-users/middleware/auth");
+$req->cfg("webroot", $pathlib->join($pathlib->dirname($req->getServerVar("PHP_SELF")), "..", ".."));
+$req->cfg("approot", $pathlib->join(__DIR__, "..", ".."));
 
 /*
     Set the renderer to be used by default.
@@ -28,11 +37,16 @@ $require("../hoobr-users/middleware/auth");
 $res->renderer[".php.html"] = $require("php-render-php");
 
 /*
-    Grab the composite modules for building the page.
+    Trigger middleware.
 */
 
+$require("../hoobr-users/middleware/auth");
 
-$composite = $require("php-composite");
+/*
+    Add local assets.
+*/
+
+$assests["addBundle"]($require("./config"));
 
 /*
     @route GET|POST /admin
@@ -40,7 +54,7 @@ $composite = $require("php-composite");
 */
 
 if ($req->cfg("loggedin") !== true) {
-    $res->render("./views/layout.php.html", $composite(
+    $res->render($pathlib->join(__DIR__, "views", "layout.php.html"), $composite(
         array(
             "sidebar" => array(
                 "module" => "../hoobr-users",
@@ -61,7 +75,7 @@ if ($req->cfg("loggedin") !== true) {
     Once the user is logged in show the admin site.
 */
 
-$res->render("./views/layout.php.html", $composite(
+$res->render($pathlib->join(__DIR__, "views", "layout.php.html"), $composite(
     array(
         "header" => array(
             "module" => "../hoobr-post",
