@@ -90,7 +90,7 @@ $exports["createPost"] = function () use ($req, $res, $render, $store, $pathlib)
         // save the post
         $saved = $store->put($postId, array("title" => $title, "text" => $text));
 
-        $res->redirect($req->cfg("webroot") . "/admin?post-id=" . $postId);
+        // $res->redirect($req->cfg("webroot") . "/admin?post-id=" . $postId);
 
     } else if ($action === "new") {
 
@@ -99,7 +99,11 @@ $exports["createPost"] = function () use ($req, $res, $render, $store, $pathlib)
 
     } else {
 
-        $postId = $store->getKeys(0, 1)[0];
+        $keys = $store->getKeys(0, 1);
+
+        if (count($keys) > 0) {
+            $postId = $keys[0];
+        }
 
     }
 
