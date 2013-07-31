@@ -7,7 +7,7 @@ $render = $require("php-render-php");
 $res = $require("php-http");
 $req = $res->request;
 
-$store = $keyval($pathlib->join(__DIR__, "posts"), 10);
+$store = $keyval($pathlib->join($req->cfg("approot"), "data", "posts"), 10);
 
 function getPostsList($store, $from=0, $to=null) {
 
