@@ -69,7 +69,7 @@ $exports["admin-main"] = function () use ($render, $pathlib) {
     $list = array();
 
     foreach ($modules as $fullpath => $package) {
-        array_push($list, $package["name"]);
+        array_push($list, $package);
     }
 
     return $render($pathlib->join(__DIR__, "views", "admin-main.php.html"), array(

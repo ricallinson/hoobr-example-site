@@ -6,12 +6,22 @@
 		<thead>
 			<tr>
 				<th>Package Name</th>
+				<th>Version</th>
+				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php foreach ($list as $item) {?>
 			<tr>
-				<td><?php echo $item;?></td>
+				<td>
+					<a href="?module=<?php echo $item["name"];?>&action=main"><?php echo $item["name"];?></a>
+				</td>
+				<td>
+					<?php echo $item["version"];?>
+				</td>
+				<td>
+					<a href="#" class="btn btn-danger btn-mini">Uninstall</a>
+				</td>
 			</tr>
 			<?php }?>
 		</tbody>
