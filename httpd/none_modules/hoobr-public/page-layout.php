@@ -14,7 +14,7 @@ ini_set('display_errors', 'on');
 
 $pathlib = $require("php-path");
 $composite = $require("php-composite");
-$assests = $require("../hoobr-assets");
+$assests = $require("hoobr-assets");
 
 /*
     Grab the $request, $response objects.
@@ -56,12 +56,12 @@ $assests["addBundle"]($require("./config"));
 $res->render($pathlib->join(__DIR__, "views", "layout.php.html"), $composite(
     array(
         "header" => array(
-            "module" => "../hoobr-posts",
-            "action" => "listPosts"
+            "module" => "hoobr-posts",
+            "action" => "menu"
         ),
         "main" => array(
-            "module" => "../hoobr-posts",
-            "action" => "showPost"
+            "module" => "hoobr-posts",
+            "action" => "main"
         ),
         "title" => "Hoobr Site",
         "footer" => "",

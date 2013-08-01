@@ -3,6 +3,7 @@ namespace php_require\hoobr_post;
 
 $pathlib = $require("php-path");
 $keyval = $require("php-keyval");
+$uuid = $require("php-uuid");
 $render = $require("php-render-php");
 $req = $require("php-http/request");
 $res = $require("php-http/response");
@@ -30,10 +31,10 @@ function getPostsList($store, $from=0, $to=null) {
 }
 
 /*
-    List all posts as links.
+    List all posts in a menu.
 */
 
-$exports["listPosts"] = function () use ($req, $render, $store, $pathlib) {
+$exports["menu"] = function () use ($req, $render, $store, $pathlib) {
 
     $postId = $req->param("post-id");
     $posts = getPostsList($store);
@@ -43,7 +44,7 @@ $exports["listPosts"] = function () use ($req, $render, $store, $pathlib) {
         $postId = key($posts);
     }
 
-    return $render($pathlib->join(__DIR__, "views", "list-posts.php.html"), array(
+    return $render($pathlib->join(__DIR__, "views", "menu.php.html"), array(
         "posts" => $posts,
         "current" => $postId
     ));
@@ -53,7 +54,7 @@ $exports["listPosts"] = function () use ($req, $render, $store, $pathlib) {
     Show a post.
 */
 
-$exports["showPost"] = function () use ($req, $render, $store, $pathlib) {
+$exports["main"] = function () use ($req, $render, $store, $pathlib) {
 
     $postId = $req->param("post-id");
 
@@ -70,12 +71,27 @@ $exports["showPost"] = function () use ($req, $render, $store, $pathlib) {
 };
 
 /*
+    List all posts in a sidebar.
+*/
+
+$exports["admin-sidebar"] = function () use ($req, $render, $store, $pathlib) {
+
+    $postId = $req->param("post-id");
+    $posts = getPostsList($store);
+
+    return $render($pathlib->join(__DIR__, "views", "sidebar.php.html"), array(
+        "posts" => $posts,
+        "current" => $postId
+    ));
+};
+
+/*
     This is not good. Needs work.
 
     CRUD Create, Read, Update, Delete
 */
 
-$exports["main"] = function () use ($req, $res, $render, $store, $pathlib) {
+$exports["admin-main"] = function () use ($req, $res, $render, $store, $pathlib, $uuid) {
 
     $action = strtolower($req->param("hoobr-post-action"));
     $saved = false;
@@ -100,14 +116,10 @@ $exports["main"] = function () use ($req, $res, $render, $store, $pathlib) {
 
         // $res->redirect($req->cfg("webroot") . "/admin?post-id=" . $postId);
 
-    } else if ($action === "new") {
+    } else if ($action === "new" || !$postId) {
 
         // starting a new post
-        $postId = $store->genUuid();
-
-    } else {
-
-        $postId = getFirstPostId($store);
+        $postId = $uuid->generate(1, 101);
 
     }
 

@@ -31,7 +31,7 @@ function inspectDir($dirpath, $pathlib) {
             $fullpath = $pathlib->join($dirpath, $file);
             $package = inspectModule($fullpath, $pathlib);
 
-            if ($package) {
+            if ($package && isset($package["engines"]["hoobr"])) {
                 $modules[$fullpath] = $package;
             }
         }
@@ -40,9 +40,10 @@ function inspectDir($dirpath, $pathlib) {
     return $modules;
 }
 
-$exports["menu"] = function () use ($req, $render, $pathlib) {
+$exports["admin-sidebar"] = function () use ($req, $render, $pathlib) {
 
-    $dirpath = $pathlib->join(__DIR__, "..");
+    // Odd, but we have to go up to the root and the back down to "node_modules".
+    $dirpath = $pathlib->join(__DIR__, "..", "..", "node_modules");
 
     $modules = inspectDir($dirpath, $pathlib);
 
@@ -52,7 +53,7 @@ $exports["menu"] = function () use ($req, $render, $pathlib) {
         array_push($list, $package["name"]);
     }
 
-    return $render($pathlib->join(__DIR__, "views", "menu.php.html"), array(
+    return $render($pathlib->join(__DIR__, "views", "sidebar.php.html"), array(
         "list" => $list,
         "current" => $req->param("module")
     ));

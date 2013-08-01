@@ -1,0 +1,12 @@
+rm -rf ./node_modules/
+rm .htaccess
+npm i
+npm link ./none_modules/hoobr-bootstrap/
+npm link ./none_modules/hoobr-admin/
+npm link ./none_modules/hoobr-assets/
+npm link ./none_modules/hoobr-default/
+npm link ./none_modules/hoobr-module-inspector/
+npm link ./none_modules/hoobr-posts/
+npm link ./none_modules/hoobr-public/
+npm link ./none_modules/hoobr-users/
+npm run-script htaccess

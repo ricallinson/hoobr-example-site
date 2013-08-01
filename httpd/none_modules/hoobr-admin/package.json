@@ -1,14 +1,13 @@
 {
-    "name": "hoobr-module-inspector",
-    "description": "Walks a given directory and inspects each package.json file found.",
+    "name": "hoobr-admin",
+    "description": "Admin site.",
     "version": "0.0.1",
     "author": {
         "name": "Ric Allinson",
         "email": "npm@ricallinson.com"
     },
     "engines": {
-        "php": ">= 5.4.0",
-        "hoobr": "*"
+        "php": ">= 5.4.0"
     },
     "dependencies" : {
         
@@ -18,7 +17,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git@github.com:ricallinson/hoobr-module-inspector.git"
+        "url": "git@github.com:ricallinson/hoobr-admin.git"
     },
     "scripts": {
         "test": "./test/run"

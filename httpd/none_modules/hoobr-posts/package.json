@@ -7,7 +7,8 @@
         "email": "npm@ricallinson.com"
     },
     "engines": {
-        "php": ">= 5.4.0"
+        "php": ">= 5.4.0",
+        "hoobr": "*"
     },
     "dependencies" : {
         

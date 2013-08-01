@@ -9,7 +9,7 @@ $req = $require("php-http/request");
     Show the logon form.
 */
 
-$module->exports["sidebar"] = function () use ($req, $render, $pathlib) {
+$module->exports["admin-sidebar"] = function () use ($req, $render, $pathlib) {
 
     if ($req->cfg("loggedin") != true) {
         return $render($pathlib->join(__DIR__, "views", "login.php.html"));

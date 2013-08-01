@@ -14,7 +14,7 @@ ini_set('display_errors', 'on');
 
 $pathlib = $require("php-path");
 $composite = $require("php-composite");
-$assests = $require("../hoobr-assets");
+$assests = $require("hoobr-assets");
 
 /*
     Grab the $request, $response objects.
@@ -40,7 +40,7 @@ $res->renderer[".php.html"] = $require("php-render-php");
     Trigger middleware.
 */
 
-$require("../hoobr-users/middleware/auth");
+$require("hoobr-users/middleware/auth");
 
 /*
     Add local assets.
@@ -57,12 +57,14 @@ if ($req->cfg("loggedin") !== true) {
     $res->render($pathlib->join(__DIR__, "views", "layout.php.html"), $composite(
         array(
             "sidebar" => array(
-                "module" => "../hoobr-users",
-                "action" => "sidebar"
+                "module" => "hoobr-users",
+                "action" => "admin-sidebar"
             ),
             "header" => "",
             "main" => "",
             "footer" => "",
+            "assetsTop" => $assests["render"]("top"),
+            "assetsBottom" => $assests["render"]("bottom"),
             "title" => "Admin Logon",
             "start" => microtime(true)
         )
@@ -88,31 +90,42 @@ if (!$mainModule) {
 }
 
 /*
+    Organize the main and sidebar slots.
+*/
+
+$main = array(
+    "module" => $mainModule,
+    "action" => "admin-" . $mainAction
+);
+
+$sidebar = array(
+    array(
+        "module" => "hoobr-users",
+        "action" => "admin-sidebar"
+    ),
+    array(
+        "module" => $mainModule,
+        "action" => "admin-sidebar"
+    ),
+    array(
+        "module" => "hoobr-module-inspector",
+        "action" => "admin-sidebar"
+    )
+);
+
+/*
     Show the admin site.
 */
 
 $res->render($pathlib->join(__DIR__, "views", "layout.php.html"), $composite(
     array(
-        "header" => array(
-            "module" => "../hoobr-posts",
-            "action" => "listPosts"
-        ),
-        "main" => array(
-            "module" => "../" . $mainModule,
-            "action" => $mainAction
-        ),
-        "sidebar" => array(
-            array(
-                "module" => "../hoobr-users",
-                "action" => "sidebar"
-            ),
-            array(
-                "module" => "../hoobr-module-inspector",
-                "action" => "menu"
-            )
-        ),
+        "header" => "",
+        "main" => $main,
+        "sidebar" => $sidebar,
         "title" => "Hoobr Admin",
         "footer" => "",
+        "assetsTop" => $assests["render"]("top"),
+        "assetsBottom" => $assests["render"]("bottom"),
         "start" => microtime(true)
     )
 ));
