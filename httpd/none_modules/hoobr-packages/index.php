@@ -1,5 +1,5 @@
 <?php
-namespace php_require\hoobr_module_inspector;
+namespace php_require\hoobr_packages;
 
 $req = $require("php-http/request");
 $render = $require("php-render-php");
