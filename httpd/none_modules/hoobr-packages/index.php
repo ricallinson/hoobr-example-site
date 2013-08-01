@@ -53,8 +53,26 @@ $exports["admin-sidebar"] = function () use ($req, $render, $pathlib) {
         array_push($list, $package["name"]);
     }
 
-    return $render($pathlib->join(__DIR__, "views", "sidebar.php.html"), array(
+    return $render($pathlib->join(__DIR__, "views", "admin-sidebar.php.html"), array(
         "list" => $list,
         "current" => $req->param("module")
+    ));
+};
+
+$exports["admin-main"] = function () use ($render, $pathlib) {
+
+    // Odd, but we have to go up to the root and the back down to "node_modules".
+    $dirpath = $pathlib->join(__DIR__, "..", "..", "node_modules");
+
+    $modules = inspectDir($dirpath, $pathlib);
+
+    $list = array();
+
+    foreach ($modules as $fullpath => $package) {
+        array_push($list, $package["name"]);
+    }
+
+    return $render($pathlib->join(__DIR__, "views", "admin-main.php.html"), array(
+        "list" => $list
     ));
 };

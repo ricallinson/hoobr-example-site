@@ -1,5 +1,5 @@
 {
-    "name": "hoobr-module-inspector",
+    "name": "hoobr-packages",
     "description": "Walks a given directory and inspects each package.json file found.",
     "version": "0.0.1",
     "author": {
@@ -18,7 +18,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git@github.com:ricallinson/hoobr-module-inspector.git"
+        "url": "git@github.com:ricallinson/hoobr-packages.git"
     },
     "scripts": {
         "test": "./test/run"

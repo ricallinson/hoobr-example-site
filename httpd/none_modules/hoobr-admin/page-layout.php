@@ -108,7 +108,7 @@ $sidebar = array(
         "action" => "admin-sidebar"
     ),
     array(
-        "module" => "hoobr-module-inspector",
+        "module" => "hoobr-packages",
         "action" => "admin-sidebar"
     )
 );

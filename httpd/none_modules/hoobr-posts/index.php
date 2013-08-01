@@ -65,7 +65,7 @@ $exports["main"] = function () use ($req, $render, $store, $pathlib) {
 
     $post = $store->get($postId);
 
-    return $render($pathlib->join(__DIR__, "views", "show-post.php.html"), array(
+    return $render($pathlib->join(__DIR__, "views", "main.php.html"), array(
         "post" => $post
     ));
 };
@@ -79,7 +79,7 @@ $exports["admin-sidebar"] = function () use ($req, $render, $store, $pathlib) {
     $postId = $req->param("post-id");
     $posts = getPostsList($store);
 
-    return $render($pathlib->join(__DIR__, "views", "sidebar.php.html"), array(
+    return $render($pathlib->join(__DIR__, "views", "admin-sidebar.php.html"), array(
         "posts" => $posts,
         "current" => $postId
     ));
@@ -128,7 +128,7 @@ $exports["admin-main"] = function () use ($req, $res, $render, $store, $pathlib,
     $title = $post["title"];
     $text = $post["text"];
 
-    return $render($pathlib->join(__DIR__, "views", "create-post.php.html"), array(
+    return $render($pathlib->join(__DIR__, "views", "admin-main.php.html"), array(
         "postId" => $postId,
         "title" => $title,
         "text" => $text,

@@ -12,10 +12,17 @@ $req = $require("php-http/request");
 $module->exports["admin-sidebar"] = function () use ($req, $render, $pathlib) {
 
     if ($req->cfg("loggedin") != true) {
-        return $render($pathlib->join(__DIR__, "views", "login.php.html"));
+        return $render($pathlib->join(__DIR__, "views", "admin-sidebar-login.php.html"));
     }
 
-    return $render($pathlib->join(__DIR__, "views", "loggedin.php.html"), array(
+    return $render($pathlib->join(__DIR__, "views", "admin-sidebar.php.html"), array(
         "user" => $req->cookie("username")
+    ));
+};
+
+$module->exports["admin-main"] = function () use ($req, $render, $pathlib) {
+
+    return $render($pathlib->join(__DIR__, "views", "admin-main.php.html"), array(
+        "users" => array()
     ));
 };
