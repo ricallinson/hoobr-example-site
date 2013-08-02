@@ -2,7 +2,7 @@
 
 Just for fun.
 
-## Installin on RaspberryPi
+## Installing on a RaspberryPi
 
 You'll need to make `.htaccess` active.
 
