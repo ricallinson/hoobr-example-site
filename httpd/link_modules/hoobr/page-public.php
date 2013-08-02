@@ -1,5 +1,6 @@
 <?php
 //@route GET /
+$startMicroTime = microtime(true);
 
 require("../../node_modules/php-require/index.php");
 
@@ -44,6 +45,6 @@ $res->render($lookFeelPackage["layout"], $composite(
         "footer" => "",
         "assetsTop" => $assests["render"]("top"),
         "assetsBottom" => $assests["render"]("bottom"),
-        "start" => microtime(true)
+        "start" => $startMicroTime
     )
 ));

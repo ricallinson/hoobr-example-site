@@ -35,9 +35,9 @@ function normalizePath($path, $webroot) {
         return $path;
     }
 
-    $pathlib = new \php_require\php_path\Path();
+    global $require;
 
-    return $pathlib->join($webroot, $path);
+    return $require("php-path")->join($webroot, $path);
 }
 
 function normalizePaths($paths, $webroot) {

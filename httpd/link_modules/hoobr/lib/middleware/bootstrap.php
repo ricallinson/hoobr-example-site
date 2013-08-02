@@ -27,6 +27,7 @@ $res = $require("php-http/response");
 
 $req->cfg("webroot", $pathlib->join($pathlib->dirname($req->getServerVar("PHP_SELF")), "..", ".."));
 $req->cfg("approot", $pathlib->join(__DIR__, "..", "..", "..", ".."));
+$req->cfg("datroot", $pathlib->join($req->cfg("approot"), "data"));
 
 /*
     Set the renderer to be used by default.

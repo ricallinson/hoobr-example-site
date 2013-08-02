@@ -8,7 +8,7 @@ $render = $require("php-render-php");
 $req = $require("php-http/request");
 $res = $require("php-http/response");
 
-$store = $keyval($pathlib->join($req->cfg("approot"), "data", "posts"), 10);
+$store = $keyval($pathlib->join($req->cfg("datroot"), "posts"), 10);
 
 function getFirstPostId($store) {
     $keys = $store->getKeys(0, 1);
