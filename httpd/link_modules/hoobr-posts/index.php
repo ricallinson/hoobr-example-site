@@ -103,7 +103,7 @@ $exports["admin-main"] = function () use ($req, $res, $render, $store, $pathlib,
 
         $store->delete($postId);
 
-        $res->redirect($req->cfg("webroot") . "/admin");
+        $res->redirect("?module=hoobr-posts&action=main");
 
     } else if ($action === "save page" && $postId) {
 
@@ -113,8 +113,6 @@ $exports["admin-main"] = function () use ($req, $res, $render, $store, $pathlib,
 
         // save the post
         $saved = $store->put($postId, array("title" => $title, "text" => $text));
-
-        // $res->redirect($req->cfg("webroot") . "/admin?post-id=" . $postId);
 
     } else if ($action === "new" || !$postId) {
 

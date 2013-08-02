@@ -17,8 +17,10 @@
 				<textarea class="form-control" name="text" rows="10"><?php echo $text;?></textarea>
 			</div>
 			<div class="form-group">
-				<a href="?hoobr-post-action=new" class="btn btn-primary">Create new page</a>
-				<a href="?post-id=<?php echo $postId;?>&hoobr-post-action=delete" class="btn btn-danger">Delete this page</a>
+				<a href="?module=hoobr-posts&amp;action=main&amp;hoobr-post-action=new" class="btn btn-primary">Create new page</a>
+				<a href="?module=hoobr-posts&amp;action=main&amp;post-id=<?php echo $postId;?>&amp;hoobr-post-action=delete" class="btn btn-danger">Delete this page</a>
+				<input type="hidden" name="module" value="hoobr-posts"></input>
+				<input type="hidden" name="action" value="main"></input>
 				<input class="btn btn-default pull-right" type="submit" name="hoobr-post-action" value="Save page"></input>
 			</div>
 		</fieldset>
