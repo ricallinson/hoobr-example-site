@@ -95,11 +95,15 @@ if (!$mainModule) {
 
 $header = array(
     array(
-        "module" => "hoobr-packages",
+        "module" => (!in_array($mainModule, array("hoobr-packages", "hoobr-users")) ? $mainModule : null),
         "action" => "admin-menu"
     ),
     array(
         "module" => "hoobr-users",
+        "action" => "admin-menu"
+    ),
+    array(
+        "module" => "hoobr-packages",
         "action" => "admin-menu"
     )
 );

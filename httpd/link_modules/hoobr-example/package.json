@@ -1,6 +1,6 @@
 {
-    "name": "hoobr-default",
-    "description": "Default hoobr module used for fallback.",
+    "name": "hoobr-example",
+    "description": "Example hoobr module.",
     "version": "0.0.1",
     "author": {
         "name": "Ric Allinson",
@@ -18,7 +18,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git@github.com:ricallinson/hoobr-default.git"
+        "url": "git@github.com:ricallinson/hoobr-example.git"
     },
     "scripts": {
         "test": "./test/run"
