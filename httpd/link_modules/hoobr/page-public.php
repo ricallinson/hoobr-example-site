@@ -23,14 +23,14 @@ $res = $require("php-http/response");
     Find our look and feel.
 */
 
-$lookFeelDir = $pathlib->join(__DIR__, "..", "hoobr-public");
-$assests["addBundle"]($require($pathlib->join($lookFeelDir, "config")));
+$lookFeelPackage = $pathlib->join(__DIR__, "..", "hoobr-public");
+$assests["addBundle"]($require($pathlib->join($lookFeelPackage, "config")));
 
 /*
     Renders the main page.
 */
 
-$res->render($pathlib->join($lookFeelDir, "views", "layout.php.html"), $composite(
+$res->render($pathlib->join($lookFeelPackage, "views", "layout.php.html"), $composite(
     array(
         "header" => array(
             "module" => "hoobr-posts",
