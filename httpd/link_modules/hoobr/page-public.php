@@ -16,21 +16,21 @@ $assests = $require("hoobr-assets");
     Grab the $request, $response objects.
 */
 
-$req = $require("php-http/request");
+// $req = $require("php-http/request");
 $res = $require("php-http/response");
 
 /*
     Find our look and feel.
 */
 
-$lookFeelPackage = $pathlib->join(__DIR__, "..", "hoobr-public");
-$assests["addBundle"]($require($pathlib->join($lookFeelPackage, "config")));
+$lookFeelPackage = $require("hoobr-public");
+$assests["addBundle"]($lookFeelPackage["config"]);
 
 /*
     Renders the main page.
 */
 
-$res->render($pathlib->join($lookFeelPackage, "views", "layout.php.html"), $composite(
+$res->render($lookFeelPackage["layout"], $composite(
     array(
         "header" => array(
             "module" => "hoobr-posts",

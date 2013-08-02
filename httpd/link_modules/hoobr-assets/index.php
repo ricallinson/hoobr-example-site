@@ -5,9 +5,7 @@ namespace php_require\hoobr_assets;
     This module should have heavy caching and combo/minify options.
 */
 
-$pathlib = $require("php-path");
 $req = $require("php-http/request");
-$res = $require("php-http/response");
 
 /*
     Holds all the css URL's.
@@ -31,21 +29,21 @@ $assetsBlob = array();
     Convert relative paths to webroot paths.
 */
 
-function normalizePath($path) {
+function normalizePath($path, $webroot) {
 
     if ($path[0] != ".") {
         return $path;
     }
 
-    global $pathlib, $req;
+    $pathlib = new \php_require\php_path\Path();
 
-    return $pathlib->join($req->cfg("webroot"), $path);
+    return $pathlib->join($webroot, $path);
 }
 
-function normalizePaths($paths) {
+function normalizePaths($paths, $webroot) {
 
     foreach ($paths as &$path) {
-        $path = normalizePath($path);
+        $path = normalizePath($path, $webroot);
     }
 
     return $paths;
@@ -55,7 +53,7 @@ function normalizePaths($paths) {
     Add a css url.
 */
 
-function addCss($assets, $location) {
+function addCss($assets, $location, $webroot) {
 
     global $assetsCss;
 
@@ -63,7 +61,7 @@ function addCss($assets, $location) {
         $assetsCss[$location] = array();
     }
 
-    $assetsCss[$location] = array_merge($assetsCss[$location], normalizePaths($assets));
+    $assetsCss[$location] = array_merge($assetsCss[$location], normalizePaths($assets, $webroot));
 }
 
 function renderCss($location) {
@@ -83,7 +81,7 @@ function renderCss($location) {
     return $blob;
 }
 
-function addJs($assets, $location) {
+function addJs($assets, $location, $webroot) {
 
     global $assetsJs;
 
@@ -91,7 +89,7 @@ function addJs($assets, $location) {
         $assetsJs[$location] = array();
     }
 
-    $assetsJs[$location] = array_merge($assetsJs[$location], normalizePaths($assets));
+    $assetsJs[$location] = array_merge($assetsJs[$location], normalizePaths($assets, $webroot));
 }
 
 function renderJs($location) {
@@ -111,7 +109,7 @@ function renderJs($location) {
     return $blob;
 }
 
-function addBlob($assets, $location) {
+function addBlob($assets, $location, $webroot) {
 
     global $assetsBlob;
 
@@ -119,7 +117,7 @@ function addBlob($assets, $location) {
         $assetsBlob[$location] = array();
     }
 
-    $assetsBlob[$location] = array_merge($assetsBlob[$location], normalizePaths($assets));
+    $assetsBlob[$location] = array_merge($assetsBlob[$location], normalizePaths($assets, $webroot));
 }
 
 function renderBlob($location) {
@@ -139,31 +137,31 @@ function renderBlob($location) {
     return $blob;
 }
 
-$exports["addCss"] = function ($assets, $location="top") {
-    addCss($assets, $location);
+$exports["addCss"] = function ($assets, $location="top") use ($req) {
+    addCss($assets, $location, $req->cfg("webroot"));
 };
 
-$exports["addJs"] = function ($assets, $location="bottom") {
-    addJs($assets, $location);
+$exports["addJs"] = function ($assets, $location="bottom") use ($req) {
+    addJs($assets, $location, $req->cfg("webroot"));
 };
 
-$exports["addBlob"] = function ($assets, $location="bottom") {
-    addBlob($assets, $location);
+$exports["addBlob"] = function ($assets, $location="bottom") use ($req) {
+    addBlob($assets, $location, $req->cfg("webroot"));
 };
 
-$exports["addBundle"] = function ($bundle) {
+$exports["addBundle"] = function ($bundle) use ($req) {
 
     foreach ($bundle as $type => $typeBundle) {
         foreach ($typeBundle as $location => $assets) {
             switch (strtolower($type)) {
                 case "css":
-                    addcss($assets, $location);
+                    addcss($assets, $location, $req->cfg("webroot"));
                     break;
                 case "js":
-                    addJs($assets, $location);
+                    addJs($assets, $location, $req->cfg("webroot"));
                     break;
                 case "blob":
-                    addBlob($assets, $location);
+                    addBlob($assets, $location, $req->cfg("webroot"));
                     break;
             }
         }

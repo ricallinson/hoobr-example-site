@@ -23,15 +23,15 @@ $res = $require("php-http/response");
     Find our look and feel.
 */
 
-$lookFeelPackage = $pathlib->join(__DIR__, "..", "hoobr-admin");
-$assests["addBundle"]($require($pathlib->join($lookFeelPackage, "config")));
+$lookFeelPackage = $require("hoobr-admin");
+$assests["addBundle"]($lookFeelPackage["config"]);
 
 /*
     If the user is not logged in show only the login form.
 */
 
 if ($req->cfg("loggedin") !== true) {
-    $res->render($pathlib->join($lookFeelPackage, "views", "layout.php.html"), $composite(
+    $res->render($lookFeelPackage["layout"], $composite(
         array(
             "sidebar" => array(
                 "module" => "hoobr-users",
@@ -101,7 +101,7 @@ $sidebar = array(
     Show the admin site.
 */
 
-$res->render($pathlib->join($lookFeelPackage, "views", "layout.php.html"), $composite(
+$res->render($lookFeelPackage["layout"], $composite(
     array(
         "header" => $header,
         "main" => $main,
