@@ -3,18 +3,6 @@ RewriteEngine On
 
 RewriteCond %{REQUEST_METHOD} GET
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^admin$ /Users/allinson/Php/hoobr/httpd/link_modules/hoobr-admin/page-layout.php [L,QSA]
-
-RewriteCond %{REQUEST_METHOD} POST
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^admin$ /Users/allinson/Php/hoobr/httpd/link_modules/hoobr-admin/page-layout.php [L,QSA]
-
-RewriteCond %{REQUEST_METHOD} GET
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^$ /Users/allinson/Php/hoobr/httpd/link_modules/hoobr-public/page-layout.php [L,QSA]
-
-RewriteCond %{REQUEST_METHOD} GET
-RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^admin$ /Users/allinson/Php/hoobr/httpd/node_modules/hoobr-admin/page-layout.php [L,QSA]
 
 RewriteCond %{REQUEST_METHOD} POST
