@@ -2,8 +2,8 @@ rm -rf ./node_modules/
 rm .htaccess
 npm i
 npm link ./link_modules/hoobr/
-npm link ./link_modules/hoobr-admin/
-npm link ./link_modules/hoobr-public/
+npm link ./link_modules/hoobr-admin-theme/
+npm link ./link_modules/hoobr-public-theme/
 
 npm link ./link_modules/hoobr-assets/
 npm link ./link_modules/hoobr-packages/

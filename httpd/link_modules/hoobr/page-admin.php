@@ -23,7 +23,7 @@ $res = $require("php-http/response");
     Find our look and feel.
 */
 
-$lookFeelPackage = $require("hoobr-admin");
+$lookFeelPackage = $require("hoobr-admin-theme");
 $assests["addBundle"]($lookFeelPackage["config"]);
 
 /*

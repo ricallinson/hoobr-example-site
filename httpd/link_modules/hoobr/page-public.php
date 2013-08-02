@@ -23,7 +23,7 @@ $res = $require("php-http/response");
     Find our look and feel.
 */
 
-$lookFeelPackage = $require("hoobr-public");
+$lookFeelPackage = $require("hoobr-public-theme");
 $assests["addBundle"]($lookFeelPackage["config"]);
 
 /*
