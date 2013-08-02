@@ -1,17 +1,13 @@
 <?php
+// @route GET|POST /admin
+
 require("../../node_modules/php-require/index.php");
-
-/*
-    Do some error logging.
-*/
-
-error_reporting(E_ALL);
-ini_set('display_errors', 'on');
 
 /*
     Require modules.
 */
 
+$loaded = $require("./lib/middleware/bootstrap");
 $pathlib = $require("php-path");
 $composite = $require("php-composite");
 $assests = $require("hoobr-assets");
@@ -24,37 +20,18 @@ $req = $require("php-http/request");
 $res = $require("php-http/response");
 
 /*
-    Set webroot and approot.
+    Find our look and feel.
 */
 
-$req->cfg("webroot", $pathlib->join($pathlib->dirname($req->getServerVar("PHP_SELF")), "..", ".."));
-$req->cfg("approot", $pathlib->join(__DIR__, "..", ".."));
+$lookFeelDir = $pathlib->join(__DIR__, "..", "hoobr-admin");
+$assests["addBundle"]($require($pathlib->join($lookFeelDir, "config")));
 
 /*
-    Set the renderer to be used by default.
-*/
-
-$res->renderer[".php.html"] = $require("php-render-php");
-
-/*
-    Trigger middleware.
-*/
-
-$require("hoobr-users/middleware/auth");
-
-/*
-    Add local assets.
-*/
-
-$assests["addBundle"]($require("./config"));
-
-/*
-    @route GET|POST /admin
     If the user is not logged in show only the login form.
 */
 
 if ($req->cfg("loggedin") !== true) {
-    $res->render($pathlib->join(__DIR__, "views", "layout.php.html"), $composite(
+    $res->render($pathlib->join($lookFeelDir, "views", "layout.php.html"), $composite(
         array(
             "sidebar" => array(
                 "module" => "hoobr-users",
@@ -124,7 +101,7 @@ $sidebar = array(
     Show the admin site.
 */
 
-$res->render($pathlib->join(__DIR__, "views", "layout.php.html"), $composite(
+$res->render($pathlib->join($lookFeelDir, "views", "layout.php.html"), $composite(
     array(
         "header" => $header,
         "main" => $main,

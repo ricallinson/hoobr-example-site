@@ -17,7 +17,7 @@
         }
     },
     "dependencies" : {
-        
+        "php-package": "git://github.com/ricallinson/php-package.git#master"
     },
     "devDependencies" : {
         

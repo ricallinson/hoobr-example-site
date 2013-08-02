@@ -2,8 +2,10 @@
 namespace php_require\hoobr_packages;
 
 $req = $require("php-http/request");
+$res = $require("php-http/response");
 $render = $require("php-render-php");
 $pathlib = $require("php-path");
+$package = $require("php-package");
 
 function getModuleList($dirpath, $pathlib) {
 
@@ -92,4 +94,27 @@ $exports["admin-main"] = function () use ($req, $render, $pathlib) {
     return $render($pathlib->join(__DIR__, "views", "admin-main.php.html"), array(
         "list" => $list
     ));
+};
+
+$exports["admin-install"] = function () use ($req, $render, $pathlib, $package) {
+
+    $source = $req->param("zip-url");
+    $destination = $pathlib->join($req->cfg("approot"), "node_modules");
+
+    if (!$req->param("hoobr-package-action") || !$source) {
+        return $render($pathlib->join(__DIR__, "views", "admin-install.php.html"));
+    }
+
+    $package($source, $destination);
+
+    return $source;
+};
+
+$exports["admin-uninstall"] = function () use ($req, $res, $render, $pathlib, $package) {
+
+    $name = $req->param("package");
+
+    return $name;
+
+    $res->redirect("?module=hoobr-packages");
 };

@@ -1,17 +1,13 @@
 <?php
+//@route GET /
+
 require("../../node_modules/php-require/index.php");
-
-/*
-    Do some error logging.
-*/
-
-error_reporting(E_ALL);
-ini_set('display_errors', 'on');
 
 /*
     Require modules.
 */
 
+$loaded = $require("hoobr/lib/middleware/bootstrap");
 $pathlib = $require("php-path");
 $composite = $require("php-composite");
 $assests = $require("hoobr-assets");
@@ -24,36 +20,17 @@ $req = $require("php-http/request");
 $res = $require("php-http/response");
 
 /*
-    Set webroot and approot.
+    Find our look and feel.
 */
 
-$req->cfg("webroot", $pathlib->join($pathlib->dirname($req->getServerVar("PHP_SELF")), "..", ".."));
-$req->cfg("approot", $pathlib->join(__DIR__, "..", ".."));
+$lookFeelDir = $pathlib->join(__DIR__, "..", "hoobr-public");
+$assests["addBundle"]($require($pathlib->join($lookFeelDir, "config")));
 
 /*
-    Set the renderer to be used by default.
-*/
-
-$res->renderer[".php.html"] = $require("php-render-php");
-
-/*
-    Trigger middleware.
-*/
-
-$require("../hoobr-users/middleware/auth");
-
-/*
-    Add local assets.
-*/
-
-$assests["addBundle"]($require("./config"));
-
-/*
-    @route GET /
     Renders the main page.
 */
 
-$res->render($pathlib->join(__DIR__, "views", "layout.php.html"), $composite(
+$res->render($pathlib->join($lookFeelDir, "views", "layout.php.html"), $composite(
     array(
         "header" => array(
             "module" => "hoobr-posts",

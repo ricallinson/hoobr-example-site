@@ -12,7 +12,7 @@
     "config": {
         "hoobr": {
             "version": "*",
-            "type": "layout",
+            "type": "theme",
             "core": "true"
         }
     },
