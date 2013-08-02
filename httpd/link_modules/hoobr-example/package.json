@@ -7,14 +7,20 @@
         "email": "npm@ricallinson.com"
     },
     "engines": {
-        "php": ">= 5.4.0",
-        "hoobr": "*"
+        "php": ">= 5.4.0"
+    },
+    "config": {
+        "hoobr": {
+            "version": "*",
+            "type": "module",
+            "core": "false"
+        }
     },
     "dependencies" : {
         
     },
     "devDependencies" : {
-        "php-tester": "git://github.com/ricallinson/php-tester.git#master"
+        
     },
     "repository": {
         "type": "git",

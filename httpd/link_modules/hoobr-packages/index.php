@@ -5,6 +5,23 @@ $req = $require("php-http/request");
 $render = $require("php-render-php");
 $pathlib = $require("php-path");
 
+function getModuleList($dirpath, $pathlib) {
+
+    $dirpath = $pathlib->join($dirpath, "node_modules");
+
+    $modules = inspectDir($dirpath, $pathlib);
+
+    $list = array();
+
+    foreach ($modules as $fullpath => $package) {
+        if (isset($package["config"]["hoobr"]["type"]) && $package["config"]["hoobr"]["type"] === "module") {
+            array_push($list, $package["name"]);
+        }
+    }
+
+    return $list;
+}
+
 function inspectModule($dirpath, $pathlib) {
 
     $filepath = $pathlib->join($dirpath, "package.json");
@@ -31,7 +48,7 @@ function inspectDir($dirpath, $pathlib) {
             $fullpath = $pathlib->join($dirpath, $file);
             $package = inspectModule($fullpath, $pathlib);
 
-            if ($package && isset($package["engines"]["hoobr"])) {
+            if ($package && isset($package["config"]["hoobr"])) {
                 $modules[$fullpath] = $package;
             }
         }
@@ -42,16 +59,7 @@ function inspectDir($dirpath, $pathlib) {
 
 $exports["admin-menu"] = function () use ($req, $render, $pathlib) {
 
-    // Odd, but we have to go up to the root and the back down to "node_modules".
-    $dirpath = $pathlib->join(__DIR__, "..", "..", "node_modules");
-
-    $modules = inspectDir($dirpath, $pathlib);
-
-    $list = array();
-
-    foreach ($modules as $fullpath => $package) {
-        array_push($list, $package["name"]);
-    }
+    $list = getModuleList($req->cfg("approot"), $pathlib);
 
     return $render($pathlib->join(__DIR__, "views", "admin-menu.php.html"), array(
         "list" => $list,
@@ -61,16 +69,7 @@ $exports["admin-menu"] = function () use ($req, $render, $pathlib) {
 
 $exports["admin-sidebar"] = function () use ($req, $render, $pathlib) {
 
-    // Odd, but we have to go up to the root and the back down to "node_modules".
-    $dirpath = $pathlib->join(__DIR__, "..", "..", "node_modules");
-
-    $modules = inspectDir($dirpath, $pathlib);
-
-    $list = array();
-
-    foreach ($modules as $fullpath => $package) {
-        array_push($list, $package["name"]);
-    }
+    $list = getModuleList($req->cfg("approot"), $pathlib);
 
     return $render($pathlib->join(__DIR__, "views", "admin-sidebar.php.html"), array(
         "list" => $list,
@@ -78,10 +77,9 @@ $exports["admin-sidebar"] = function () use ($req, $render, $pathlib) {
     ));
 };
 
-$exports["admin-main"] = function () use ($render, $pathlib) {
+$exports["admin-main"] = function () use ($req, $render, $pathlib) {
 
-    // Odd, but we have to go up to the root and the back down to "node_modules".
-    $dirpath = $pathlib->join(__DIR__, "..", "..", "node_modules");
+    $dirpath = $pathlib->join($req->cfg("approot"), "node_modules");
 
     $modules = inspectDir($dirpath, $pathlib);
 

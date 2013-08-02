@@ -6,6 +6,7 @@
 		<thead>
 			<tr>
 				<th>Package Name</th>
+				<th>Type</th>
 				<th>Version</th>
 				<th>Quality</th>
 				<th></th>
@@ -18,13 +19,16 @@
 					<a href="?module=<?php echo $item["name"];?>&action=main"><?php echo $item["name"];?></a>
 				</td>
 				<td>
+					<?php echo $item["config"]["hoobr"]["type"];?>
+				</td>
+				<td>
 					<?php echo $item["version"];?>
 				</td>
 				<td>
 					0%
 				</td>
 				<td>
-					<a href="#" class="btn btn-danger btn-mini">Uninstall</a>
+					<?php if ($item["config"]["hoobr"]["core"] !== "true") {?><a href="#" class="btn btn-danger btn-mini">Uninstall</a><?php }?>
 				</td>
 			</tr>
 			<?php }?>
