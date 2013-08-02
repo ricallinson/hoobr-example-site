@@ -93,6 +93,17 @@ if (!$mainModule) {
     Organize the main and sidebar slots.
 */
 
+$header = array(
+    array(
+        "module" => "hoobr-packages",
+        "action" => "admin-menu"
+    ),
+    array(
+        "module" => "hoobr-users",
+        "action" => "admin-menu"
+    )
+);
+
 $main = array(
     "module" => $mainModule,
     "action" => "admin-" . $mainAction
@@ -100,15 +111,7 @@ $main = array(
 
 $sidebar = array(
     array(
-        "module" => "hoobr-users",
-        "action" => "admin-sidebar"
-    ),
-    array(
         "module" => $mainModule,
-        "action" => "admin-sidebar"
-    ),
-    array(
-        "module" => "hoobr-packages",
         "action" => "admin-sidebar"
     )
 );
@@ -119,7 +122,7 @@ $sidebar = array(
 
 $res->render($pathlib->join(__DIR__, "views", "layout.php.html"), $composite(
     array(
-        "header" => "",
+        "header" => $header,
         "main" => $main,
         "sidebar" => $sidebar,
         "title" => "Hoobr Admin",

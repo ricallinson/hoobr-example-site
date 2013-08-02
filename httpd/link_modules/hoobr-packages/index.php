@@ -40,6 +40,25 @@ function inspectDir($dirpath, $pathlib) {
     return $modules;
 }
 
+$exports["admin-menu"] = function () use ($req, $render, $pathlib) {
+
+    // Odd, but we have to go up to the root and the back down to "node_modules".
+    $dirpath = $pathlib->join(__DIR__, "..", "..", "node_modules");
+
+    $modules = inspectDir($dirpath, $pathlib);
+
+    $list = array();
+
+    foreach ($modules as $fullpath => $package) {
+        array_push($list, $package["name"]);
+    }
+
+    return $render($pathlib->join(__DIR__, "views", "admin-menu.php.html"), array(
+        "list" => $list,
+        "current" => $req->param("module")
+    ));
+};
+
 $exports["admin-sidebar"] = function () use ($req, $render, $pathlib) {
 
     // Odd, but we have to go up to the root and the back down to "node_modules".

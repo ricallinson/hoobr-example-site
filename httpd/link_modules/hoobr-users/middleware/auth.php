@@ -45,5 +45,5 @@ if ($req->cfg("loggedin") && $req->param("logout")) {
     $req->cfg("loggedin", false);
     $res->clearCookie("security");
     $res->clearCookie("username");
-    $res->redirect();
+    $res->redirect("./");
 }
