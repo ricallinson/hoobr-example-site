@@ -83,7 +83,7 @@ $mainAction = $req->param("action");
 */
 
 if (!$mainModule) {
-    $req->query["module"] = "hoobr-posts";
+    $req->query["module"] = "hoobr-packages";
     $req->query["action"] = "main";
     $mainModule = $req->param("module");
     $mainAction = $req->param("action");
