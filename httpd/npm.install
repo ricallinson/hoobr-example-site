@@ -1,12 +1,12 @@
 rm -rf ./node_modules/
 rm .htaccess
 npm i
-npm link ./none_modules/hoobr-bootstrap/
-npm link ./none_modules/hoobr-admin/
-npm link ./none_modules/hoobr-assets/
-npm link ./none_modules/hoobr-default/
-npm link ./none_modules/hoobr-packages/
-npm link ./none_modules/hoobr-posts/
-npm link ./none_modules/hoobr-public/
-npm link ./none_modules/hoobr-users/
+npm link ./link_modules/hoobr-bootstrap/
+npm link ./link_modules/hoobr-admin/
+npm link ./link_modules/hoobr-assets/
+npm link ./link_modules/hoobr-default/
+npm link ./link_modules/hoobr-packages/
+npm link ./link_modules/hoobr-posts/
+npm link ./link_modules/hoobr-public/
+npm link ./link_modules/hoobr-users/
 npm run-script htaccess
