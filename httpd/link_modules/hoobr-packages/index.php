@@ -7,6 +7,41 @@ $render = $require("php-render-php");
 $pathlib = $require("php-path");
 $package = $require("php-package");
 
+/*
+    Deletes the given directory and all files in it.
+
+    Copy of same function in php-package.
+*/
+
+function deleteDir($dirpath) {
+
+    if (!is_dir($dirpath)) {
+        throw new InvalidArgumentException("$dirpath must be a directory");
+    }
+
+    if (substr($dirpath, strlen($dirpath) - 1, 1) != DIRECTORY_SEPARATOR) {
+        $dirpath .= DIRECTORY_SEPARATOR;
+    }
+
+    $cdir = scandir($dirpath);
+
+    foreach ($cdir as $key => $value) {
+
+        if (!in_array($value, array(".",".."))) {
+
+            $fullpath = $dirpath . DIRECTORY_SEPARATOR . $value;
+
+            if (is_dir($fullpath)) {
+                deleteDir($fullpath);
+            } else {
+                unlink($fullpath);
+            }
+        }
+    }
+
+    return rmdir($dirpath);
+}
+
 function getModuleList($dirpath, $pathlib) {
 
     $dirpath = $pathlib->join($dirpath, "node_modules");
@@ -96,7 +131,7 @@ $exports["admin-main"] = function () use ($req, $render, $pathlib) {
     ));
 };
 
-$exports["admin-install"] = function () use ($req, $render, $pathlib, $package) {
+$exports["admin-install"] = function () use ($req, $res, $render, $pathlib, $package) {
 
     $source = $req->param("zip-url");
     $destination = $pathlib->join($req->cfg("approot"), "node_modules");
@@ -105,16 +140,29 @@ $exports["admin-install"] = function () use ($req, $render, $pathlib, $package) 
         return $render($pathlib->join(__DIR__, "views", "admin-install.php.html"));
     }
 
-    $package($source, $destination);
+    $result = $package($source, $destination);
 
-    return $source;
+    if (isset($result["error"])) {
+        return $render($pathlib->join(__DIR__, "views", "admin-install.php.html"), $result);
+    }
+
+    $res->redirect("?module=" . $result["package"]);
 };
 
 $exports["admin-uninstall"] = function () use ($req, $res, $render, $pathlib, $package) {
 
-    $name = $req->param("package");
+    $packageName = $req->param("package-name");
+    $confirm = $req->param("confirm");
+    $dirpath = $pathlib->join($req->cfg("approot"), "node_modules", $packageName);
 
-    return $name;
+    if ($packageName && is_dir($dirpath) && $confirm === "true") {
+        if (deleteDir($dirpath)) {
+            $res->redirect("?module=hoobr-packages");
+        }
+    }
 
-    $res->redirect("?module=hoobr-packages");
+    return $render($pathlib->join(__DIR__, "views", "admin-uninstall.php.html"), array(
+        "packageName" => $packageName,
+        "error" => !is_dir($dirpath)
+    ));
 };

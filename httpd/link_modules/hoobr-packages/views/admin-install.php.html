@@ -2,6 +2,12 @@
     <div class="panel-heading">
         <h3 class="panel-title">Install Package</h3>
     </div>
+    <?php if (isset($error)) {?>
+    <div class="alert">
+        <h4>Warning!</h4>
+        <?php echo $error;?>
+    </div>
+    <?php }?>
     <form method="post">
         <fieldset>
             <div class="form-group">
