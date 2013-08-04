@@ -1,1 +1,1 @@
-ab -n 500 -c 1 http://127.0.0.1:8888/hoobr/httpd/
+ab -n 500 -c 1 http://127.0.0.1:8888/hoobr-example-site/httpd/
