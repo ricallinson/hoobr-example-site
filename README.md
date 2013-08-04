@@ -1,4 +1,4 @@
-# hoobr
+# Hoobr Example Site
 
 Just for fun.
 

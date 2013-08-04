@@ -3,12 +3,12 @@ RewriteEngine On
 
 RewriteCond %{REQUEST_METHOD} GET
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^admin$ /Users/allinson/Php/hoobr/httpd/node_modules/hoobr/page-admin.php [L,QSA]
+RewriteRule ^admin$ /Users/allinson/Php/hoobr-example-site/httpd/node_modules/hoobr/page-admin.php [L,QSA]
 
 RewriteCond %{REQUEST_METHOD} POST
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^admin$ /Users/allinson/Php/hoobr/httpd/node_modules/hoobr/page-admin.php [L,QSA]
+RewriteRule ^admin$ /Users/allinson/Php/hoobr-example-site/httpd/node_modules/hoobr/page-admin.php [L,QSA]
 
 RewriteCond %{REQUEST_METHOD} GET
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^$ /Users/allinson/Php/hoobr/httpd/node_modules/hoobr/page-public.php [L,QSA]
+RewriteRule ^$ /Users/allinson/Php/hoobr-example-site/httpd/node_modules/hoobr/page-public.php [L,QSA]

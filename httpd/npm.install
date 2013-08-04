@@ -3,6 +3,4 @@ rm .htaccess
 
 npm i
 
-npm link ./link_modules/hoobr/
-
 npm run-script htaccess
