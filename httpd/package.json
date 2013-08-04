@@ -17,7 +17,9 @@
         "php-composite": "git://github.com/ricallinson/php-composite.git#master",
         "php-keyval": "git://github.com/ricallinson/php-keyval.git#master",
         "php-uuid": "git://github.com/ricallinson/php-uuid.git#master",
+
         "hoobr": "git://github.com/ricallinson/hoobr.git#master",
+        "hoobr-content-store": "git://github.com/ricallinson/hoobr-content-store.git#master",
         "hoobr-bootstrap": "git://github.com/ricallinson/hoobr-bootstrap.git#master",
         "hoobr-articles": "git://github.com/ricallinson/hoobr-articles.git#master",
         "hoobr-users": "git://github.com/ricallinson/hoobr-users.git#master",
