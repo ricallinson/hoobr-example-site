@@ -34,11 +34,11 @@ $assests["addBundle"]($lookFeelPackage["config"]);
 $res->render($lookFeelPackage["layout"], $composite(
     array(
         "header" => array(
-            "module" => "hoobr-posts",
+            "module" => "hoobr-articles",
             "action" => "menu"
         ),
         "main" => array(
-            "module" => "hoobr-posts",
+            "module" => "hoobr-articles",
             "action" => "main"
         ),
         "title" => "Hoobr Site",

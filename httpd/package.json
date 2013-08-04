@@ -16,7 +16,9 @@
         "php-render-php": "git://github.com/ricallinson/php-render-php.git#master",
         "php-composite": "git://github.com/ricallinson/php-composite.git#master",
         "php-keyval": "git://github.com/ricallinson/php-keyval.git#master",
-        "php-uuid": "git://github.com/ricallinson/php-uuid.git#master"
+        "php-uuid": "git://github.com/ricallinson/php-uuid.git#master",
+        "hoobr-bootstrap": "git://github.com/ricallinson/hoobr-bootstrap.git#master",
+        "hoobr-articles": "git://github.com/ricallinson/hoobr-articles.git#master"
     },
     "devDependencies" : {
         "php-tester": "git://github.com/ricallinson/php-tester.git#master"
