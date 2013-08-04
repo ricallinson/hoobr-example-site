@@ -24,7 +24,7 @@ $res = $require("php-http/response");
     Find our look and feel.
 */
 
-$lookFeelPackage = $require("hoobr-admin-theme");
+$lookFeelPackage = $require("hoobr-theme-admin");
 $assests["addBundle"]($lookFeelPackage["config"]);
 
 /*

@@ -18,7 +18,12 @@
         "php-keyval": "git://github.com/ricallinson/php-keyval.git#master",
         "php-uuid": "git://github.com/ricallinson/php-uuid.git#master",
         "hoobr-bootstrap": "git://github.com/ricallinson/hoobr-bootstrap.git#master",
-        "hoobr-articles": "git://github.com/ricallinson/hoobr-articles.git#master"
+        "hoobr-articles": "git://github.com/ricallinson/hoobr-articles.git#master",
+        "hoobr-users": "git://github.com/ricallinson/hoobr-users.git#master",
+        "hoobr-assets": "git://github.com/ricallinson/hoobr-assets.git#master",
+        "hoobr-packages": "git://github.com/ricallinson/hoobr-packages.git#master",
+        "hoobr-theme-public": "git://github.com/ricallinson/hoobr-theme-public.git#master",
+        "hoobr-theme-admin": "git://github.com/ricallinson/hoobr-theme-admin.git#master"
     },
     "devDependencies" : {
         "php-tester": "git://github.com/ricallinson/php-tester.git#master"
