@@ -1,7 +1,5 @@
 # Hoobr Example Site
 
-The open source experiment for creating a content management system that's flexible but not complex.
-
 ## Installing on a RaspberryPi
 
     apt-get update
