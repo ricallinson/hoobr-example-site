@@ -12,13 +12,13 @@
     "dependencies" : {
         "php-require": "git://github.com/ricallinson/php-require.git#master",
         "php-http": "git://github.com/ricallinson/php-http.git#master",
-        "php-rewrite": "git://github.com/ricallinson/php-rewrite.git#master",
         "php-render-php": "git://github.com/ricallinson/php-render-php.git#master",
         "php-composite": "git://github.com/ricallinson/php-composite.git#master",
         "php-keyval": "git://github.com/ricallinson/php-keyval.git#master",
         "php-uuid": "git://github.com/ricallinson/php-uuid.git#master",
 
         "hoobr": "git://github.com/ricallinson/hoobr.git#master",
+        "hoobr-config-reader": "git://github.com/ricallinson/hoobr-config-reader.git#master",
         "hoobr-content-store": "git://github.com/ricallinson/hoobr-content-store.git#master",
         "hoobr-bootstrap": "git://github.com/ricallinson/hoobr-bootstrap.git#master",
         "hoobr-articles": "git://github.com/ricallinson/hoobr-articles.git#master",
