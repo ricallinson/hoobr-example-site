@@ -15,11 +15,13 @@ $pathlib = $require("php-path");
 $webroot = $pathlib->join($pathlib->dirname($req->getServerVar("PHP_SELF")));
 $approot = $pathlib->join(__DIR__);
 $datroot = $pathlib->join($approot, "data");
+$cfgroot = $pathlib->join($approot, "config");
 
 $req->config = array(
     "webroot" => $webroot,
     "approot" => $approot,
-    "datroot" => $datroot
+    "datroot" => $datroot,
+    "cfgroot" => $cfgroot
 );
 
 /*

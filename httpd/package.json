@@ -18,6 +18,7 @@
         "php-uuid": "git://github.com/ricallinson/php-uuid.git#master",
 
         "hoobr": "git://github.com/ricallinson/hoobr.git#master",
+        "hoobr-bucket-tester": "git://github.com/ricallinson/hoobr-bucket-tester.git#master",
         "hoobr-config-reader": "git://github.com/ricallinson/hoobr-config-reader.git#master",
         "hoobr-content-store": "git://github.com/ricallinson/hoobr-content-store.git#master",
         "hoobr-bootstrap": "git://github.com/ricallinson/hoobr-bootstrap.git#master",
