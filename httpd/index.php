@@ -25,20 +25,13 @@ $req->config = array(
 );
 
 /*
-    Find the page we want.
+    See if we were given a page.
 */
 
-$page = isset($_REQUEST["page"]) ? $_REQUEST["page"] : "";
-$module = "hoobr/page-public";
-
-switch ($page) {
-    case "admin":
-        $module = "hoobr/page-admin";
-        break;
-}
+$page = isset($_REQUEST["page"]) ? $_REQUEST["page"] : "public";
 
 /*
     Require the page module.
 */
 
-$require($module);
+$require("hoobr/page-" . strtolower($page));
