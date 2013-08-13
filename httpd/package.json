@@ -19,7 +19,7 @@
 
         "hoobr": "git://github.com/ricallinson/hoobr.git#master",
         "hoobr-bucket-tester": "git://github.com/ricallinson/hoobr-bucket-tester.git#master",
-        "hoobr-config-reader": "git://github.com/ricallinson/hoobr-config-reader.git#master",
+        "hoobr-config-manager": "git://github.com/ricallinson/hoobr-config-manager.git#master",
         "hoobr-content-store": "git://github.com/ricallinson/hoobr-content-store.git#master",
         "hoobr-bootstrap": "git://github.com/ricallinson/hoobr-bootstrap.git#master",
         "hoobr-articles": "git://github.com/ricallinson/hoobr-articles.git#master",
